@@ -10,6 +10,7 @@ KWallet is the central credential management system for the KDE Plasma desktop e
 *   Web form passwords
 *   API tokens (like GitHub or Azure)
 *   SSH key passphrases
+*   Apps (Tokens/password)
 
 ### How it works:
 *   **Encryption:** All data in a wallet is encrypted using **Blowfish** or **GPG**.
@@ -26,18 +27,24 @@ VS Code doesn't talk to KWallet directly. Instead, it uses a standardized bridge
 1.  **VS Code** calls the **Secret Service API** (a standard Linux D-Bus interface).
 2.  **libsecret** is the library VS Code uses to communicate with this API.
 3.  **KWallet** (specifically modern versions using KDE Frameworks 5.97+) implements this Secret Service interface.
+```Simply it uses System API to call ask the K manager.```
 
 ### Visual Workflow Tree:
 ```text
 VS Code Secret Storage
-├── 1. Action: VS Code needs to save/load a secret (e.g. GitHub Token)
-├── 2. Internal Engine: Electron requests the "Safe Storage Key"
-├── 3. Bridge: VS Code calls `libsecret` library
-│   └── libsecret sends D-Bus message to `org.freedesktop.secrets`
-├── 4. Provider (KWallet): Receives the D-Bus request
-│   ├── If Wallet Locked: System prompts user for Master Password
-│   └── If Wallet Unlocked: KWallet accesses "Code Safe Storage" entry
+├── 1. Action: VS Code needs to save/load a secret (Token/password) (e.g. GitHub Token)
+|
+├── 2. Internal Engine: Electron requests the "Safe Storage Key" (Perpare the API call)
+|
+├── 3. Bridge: VS Code calls `libsecret` library 
+│   └── libsecret sends D-Bus message to `org.freedesktop.secrets` (Send the message to Kmanager to store the data in the KWallet)
+|
+├── 4. Provider (KWallet): Receives the D-Bus request (VS code request the data from the Kmanager)
+│   ├── If Wallet Locked: System prompts user for Master Password (Show a window and ask the user to enter the password)
+│   └── If Wallet Unlocked: KWallet accesses "Code Safe Storage" entry (directly give the code)
+|
 ├── 5. Physical Storage: Key is encrypted & saved to disk (~/.local/share/kwalletd/)
+|
 └── 6. Result: VS Code uses the key to encrypt/decrypt local session data
 ```
 
@@ -91,4 +98,3 @@ You can tell VS Code which password store to use.
 Make sure the wallet is "Enabled" in **System Settings** -> **Security & Privacy** -> **KDE Wallet**.
 
 ---
-*Created on: June 18, 2026*
