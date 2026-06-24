@@ -27,7 +27,7 @@ VS Code doesn't talk to KWallet directly. Instead, it uses a standardized bridge
 1.  **VS Code** calls the **Secret Service API** (a standard Linux D-Bus interface).
 2.  **libsecret** is the library VS Code uses to communicate with this API.
 3.  **KWallet** (specifically modern versions using KDE Frameworks 5.97+) implements this Secret Service interface.
-```Simply it uses System API to call ask the K manager.```
+4.  Simply it uses `System API` to call ask the `Kwallet`. 
 
 ### Visual Workflow Tree:
 ```text
