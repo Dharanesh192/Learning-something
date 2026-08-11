@@ -6,6 +6,11 @@ A quick guide to the most commonly used Git commands.
 - `git init`: Initialize a new local Git repository.
 - `git clone <url>`: Download a project and its entire version history from a remote repository.
 
+## Connecting the user account and repo
+- `git config --global user.email "EMANIL@gmail.com"` : Used for setting an default identity
+- `git branch -M main` : Set the main branch as default
+- `git remote add origin <YOUR_REPO_URL_HERE>` : Connect the repo to push commit message 
+
 ## Staging & Committing
 - `git status`: Lists all new or modified files to be committed.
 - `git add <file>`: Snapshots the file in preparation for versioning.
