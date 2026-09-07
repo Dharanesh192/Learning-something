@@ -55,3 +55,13 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 5.  A `.json` file can be validated live for free at `jsonlint.com` or `jsonformatter.org`, or right inside `VS Code` (built-in, flags syntax errors as you type), no paid plan needed
 
 ---
+
+# HTTP status codes
+`Simple workflow`
+1.  Every `request` sent by a browser/app to a `server` gets back a `3-digit status code` telling it `what happened`
+2.  The `first digit` shows the `category` — `1xx` info, `2xx` success, `3xx` redirect, `4xx` client error, `5xx` server error
+3.  Common ones to remember: `200` = OK, `201` = Created, `301`/`302` = moved/redirected, `400` = bad request, `401` = need to log in, `403` = forbidden, `404` = not found, `429` = too many requests
+4.  `4xx` codes mean `you (the client) made a mistake`; `5xx` codes mean `the server broke`, not you
+5.  Full breakdown with every code and its meaning is in `HTTP_status_codes.md`
+---
+
