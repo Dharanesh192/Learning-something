@@ -1,4 +1,4 @@
-# Thing that I learn
+# Thing's that I learn
 
 The main motive of this repo is to record the things that I learn in my journey. This are the small skill that I need to remember and store.
 This readme is to tell the one line of each thing and they is a dedicated file for each
