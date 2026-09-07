@@ -14,14 +14,14 @@ JSON (JavaScript Object Notation) is a lightweight, text-based data format used 
 
 ## 2. Data Types in JSON
 
-| Type    | Example                  |
-|---------|---------------------------|
-| String  | `"name": "Machi"`         |
-| Number  | `"age": 21`                |
-| Boolean | `"is_student": true`       |
-| Null    | `"middle_name": null`      |
-| Object  | `"address": { "city": "Salem" }` |
-| Array   | `"skills": ["Python", "Pandas"]` |
+| Type    | Example                  | Accessed By    |
+|---------|---------------------------|---------------|
+| String  | `"name": "Machi"`         | name    |
+| Number  | `"age": 21`                | age    |
+| Boolean | `"is_student": true`       | is_student    |
+| Null    | `"middle_name": null`      | middle_name    |
+| Object  | `"address": { "city": "Salem" }` | address\[city\]    |
+| Array   | `"skills": ["Python", "Pandas"]` | skills\[0\]    |
 
 ## 3. Example JSON File
 
@@ -160,4 +160,3 @@ const value = data[category]?.[mode]?.["tamil"];
 **Key takeaway:** whether it's a Python dict or a parsed JSON object, nested lookups follow the same chain — `outer_key → inner_key → value`. Use `.get()` (Python) or `?.` optional chaining (JavaScript) when a key might not exist, to avoid crashes.
 
 ---
-*This file is meant as a quick reference — feel free to expand it with real examples from your own projects.*
