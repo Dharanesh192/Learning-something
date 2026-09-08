@@ -63,5 +63,17 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 3.  Common ones to remember: `200` = OK, `201` = Created, `301`/`302` = moved/redirected, `400` = bad request, `401` = need to log in, `403` = forbidden, `404` = not found, `429` = too many requests
 4.  `4xx` codes mean `you (the client) made a mistake`; `5xx` codes mean `the server broke`, not you
 5.  Full breakdown with every code and its meaning is in `HTTP_status_codes.md`
+
 ---
 
+## HTMX basics
+`Simple workflow`
+1.  `htmx` is a small, dependency-free `JavaScript library` that lets HTML attributes trigger `AJAX`, `WebSockets`, and `SSE` directly — no separate JS needed
+2.  Attributes like `hx-get`, `hx-post`, `hx-trigger`, `hx-target`, and `hx-swap` map straight to the HTTP verb, the firing event, and where/how the response gets swapped into the DOM
+3.  The server responds with `HTML fragments`, not `JSON` — htmx just swaps that HTML into the page, unlike typical JS frameworks
+4.  Fits best for `server-rendered apps` (Django, Flask, Rails, Express) needing interactivity without a full `SPA` frontend or a build step
+5.  Differs from `React`: htmx keeps the `source of truth` on the server and swaps HTML fragments; React renders UI from client-side `JS state` — the two can even be combined (htmx page + React "island")
+6.  Since `hx-*` attributes expand what raw HTML can do, any untrusted content must be escaped to avoid `XSS`
+7.  Official docs: `htmx.org/docs` — worked examples at `htmx.org/examples`
+
+8.  ---
