@@ -74,6 +74,6 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 4.  Fits best for `server-rendered apps` (Django, Flask, Rails, Express) needing interactivity without a full `SPA` frontend or a build step
 5.  Differs from `React`: htmx keeps the `source of truth` on the server and swaps HTML fragments; React renders UI from client-side `JS state` — the two can even be combined (htmx page + React "island")
 6.  Since `hx-*` attributes expand what raw HTML can do, any untrusted content must be escaped to avoid `XSS`
-7.  Official docs: `htmx.org/docs` — worked examples at `htmx.org/examples`
 
-8.  ---
+
+---
