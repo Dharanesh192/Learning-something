@@ -56,3 +56,15 @@ It's a weaker fit when you need a highly stateful, offline-capable, or heavily a
 | Best for | Content-driven, server-rendered, CRUD-heavy apps | Complex, highly interactive, client-heavy apps (dashboards, editors) |
 
 In short: HTMX pushes work back to the server and treats HTML itself as the interactivity layer (`HATEOAS`-style), while React moves rendering and state into the browser and treats the UI as a function of JS state. They can even be combined — e.g. HTMX for most of a page, with a React "island" for one complex widget.
+
+## 4. Source to Study Further
+
+Official documentation (Simple workflow: read this as the primary reference):
+
+- https://htmx.org/docs/
+
+Also useful once the basics above make sense:
+
+- https://htmx.org/reference/ — full attribute/event reference
+- https://htmx.org/examples/ — worked examples (active search, infinite scroll, file upload, etc.)
+- https://htmx.org/essays/ — design philosophy behind HTMX (hypermedia-driven apps)
