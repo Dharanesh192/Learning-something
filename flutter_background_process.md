@@ -1,39 +1,7 @@
 # Flutter Under the Hood
 
-## Core mental model
-
-``` text
-Dart / Flutter source code
-        |
-        | compile time
-        v
-   Compiled program
-        |
-        | runtime
-        v
-     build() runs
-        |
-        v
- Widget descriptions
-        |
-        v
-    Widget Tree
-        |
-        v
-    Element Tree
-        |
-        v
- RenderObjects (where applicable)
-        |
-        v
- Layout + Paint
-        |
-        v
-      Pixels
-```
-
 > The widget tree is created at runtime. Compilation produces
-> executable/target-specific code; it does not compile the widget tree
+> executable/target-specific code, it does not compile the widget tree
 > itself.
 
 ## Widget description
