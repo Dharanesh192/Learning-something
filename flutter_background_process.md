@@ -291,36 +291,15 @@ A useful simplified rule is:
 
 ## Final memory table
 
-  Concept              Simple meaning
-  -------------------- -----------------------------------------------------------
-  Widget description   Configuration describing one piece of UI
-  Widget Tree          Hierarchy of widget descriptions
-  Element              Persistent runtime node/location associated with a widget
-  Element Tree         Persistent runtime structure Flutter manages
-  build                Method that creates/returns widget descriptions
-  BuildContext         Handle representing an Element's location
-  mounted              Whether the State is still attached to an Element
-  RenderObject         Handles layout and painting
-  Constraints          Limits supplied during layout
-  Size                 Size chosen within those limits
-  LayoutBuilder        Lets build code respond to local layout constraints
-
-## Memory trick
-
-**Build = WHAT**
-
-**Context = WHERE**
-
-**Mounted = ALIVE?**
-
-**Element = PERSISTENT NODE**
-
-**RenderObject = HOW TO DISPLAY**
-
-**Widget = DESCRIPTION**
-
-**Widget Tree = BLUEPRINT**
-
-**Element Tree = RUNTIME STRUCTURE**
-
-**Render Tree = LAYOUT + PAINT**
+  |Concept             | Simple meaning|
+  -------------------- |-----------------------------------------------------------|
+  |Widget description  |Configuration describing one piece of UI|
+  |Widget Tree         |Hierarchy of widget descriptions|
+  |Element             |Persistent runtime node/location associated with a widget|
+  |Element Tree        |Persistent runtime structure Flutter manages|
+  |build               |Method that creates/returns widget descriptions|
+  |BuildContext        |Handle representing an Element's location|
+  |mounted             |Whether the State is still attached to an Element|
+  |RenderObject        |Handles layout and painting|
+  |Constraints         |Limits supplied during layout|
+  |Size                |Size chosen within those limits|
