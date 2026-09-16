@@ -56,7 +56,7 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 2.  The `first digit` shows the `category` — `1xx` info, `2xx` success, `3xx` redirect, `4xx` client error, `5xx` server error
 3.  Common ones to remember: `200` = OK, `201` = Created, `301`/`302` = moved/redirected, `400` = bad request, `401` = need to log in, `403` = forbidden, `404` = not found, `429` = too many requests
 4.  `4xx` codes mean `you (the client) made a mistake`; `5xx` codes mean `the server broke`, not you
-5.  Full breakdown with every code and its meaning is in `HTTP_status_codes.md`
+5.  Full breakdown with every code and its meaning is in [HTTP_status.md](HTTP_status_codes.md).
 
 ---
 
@@ -67,7 +67,7 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 4.  Fits best for `server-rendered apps` (Django, Flask, Rails, Express) needing interactivity without a full `SPA` frontend or a build step
 5.  Differs from `React`: htmx keeps the `source of truth` on the server and swaps HTML fragments; React renders UI from client-side `JS state` — the two can even be combined (htmx page + React "island")
 6.  Since `hx-*` attributes expand what raw HTML can do, any untrusted content must be escaped to avoid `XSS`
-
+7.  For a full breakdown of `HTMX` check the [HTMX.md](HTMX.md).
 ---
 
 # Flutter rendering pipeline
@@ -77,6 +77,6 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 3.  Flutter turns that blueprint into a persistent `element tree` kept in `RAM`
 4.  On `setState()`, the element is marked `dirty`, `build()` runs again, and Flutter `reconciles` the new widget descriptions against the existing elements — matching ones are `reused/updated`, non-matching ones are `replaced`
 5.  Elements that need to occupy space hand off to a `render object`
-6.  To get a detailed explanation check the [Flutter_background_process.md](Flutter_background_process.md) file.
+6.  To get a detailed explanation check the [Flutter_background_process.md](flutter_background_process.md) file.
 7.  And for the `code` to `UI` workflow explanation check [Work_flow.md](https://github.com/Dharanesh192/Focus-hub/blob/main/Work_flow.md) file. 
 ---
