@@ -77,3 +77,14 @@ And finally I mark the topic with this (⚠️). If you are at `your starting po
 
 
 ---
+
+# Flutter rendering pipeline
+
+1.  A `widget description` is just the `configuration` of one widget
+2.  Widgets nest together into the `widget tree`
+3.  Flutter turns that blueprint into a persistent `element tree` kept in `RAM`
+4.  On `setState()`, the element is marked `dirty`, `build()` runs again, and Flutter `reconciles` the new widget descriptions against the existing elements — matching ones are `reused/updated`, non-matching ones are `replaced`
+5.  Elements that need to occupy space hand off to a `render object`
+6.  Full breakdown of the `widget → element → render object` relationship, plus `BuildContext` and `mounted`, is in `Flutter_rendering_pipeline.md`
+
+---
