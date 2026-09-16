@@ -79,7 +79,7 @@ Elements maintains a `runtime structure`, `parent-child relationships`,
 current widget configuration associated with that location,
 `lifecycle information`, and the location represented by the Element.
 
-The Element Tree is maintained in memory while the app is running.
+The Element Tree is maintained in `RAM` while the app is running.
 
 Do not think of an Element as the object that stores final screen
 coordinates. Geometry belongs to the rendering/layout system.
@@ -103,9 +103,8 @@ Think:
 
 > **build = "What widgets should exist here right now?"**
 
-It does not permanently store the widget tree or directly paint pixels.
 Flutter reconciles the returned widget descriptions with the existing
-Element tree.
+one.
 
 ## setState and rebuild
 
@@ -195,7 +194,7 @@ MediaQuery / Theme / Navigator / etc.
 
 ## mounted
 
-`mounted` is lifecycle information.
+`mounted` is lifecycle information of the state in the element tree.
 
 ``` dart
 if (!mounted) return;
@@ -289,114 +288,6 @@ Size
 A useful simplified rule is:
 
 > **Constraints go down. Sizes come back up.**
-
-## LayoutBuilder
-
-`LayoutBuilder` gives its builder callback access to the constraints
-available at that location.
-
-``` dart
-LayoutBuilder(
-  builder: (context, constraints) {
-    return Text(
-      "Hello",
-      style: TextStyle(
-        fontSize: constraints.maxWidth * 0.05,
-      ),
-    );
-  },
-)
-```
-
-Important:
-
-> `LayoutBuilder` does not itself set the constraints. It receives
-> constraints from its parent and lets you build based on them.
-
-Compare:
-
-``` text
-MediaQuery
-    |
-    +-- "What is the overall app/window environment?"
-
-LayoutBuilder
-    |
-    +-- "How much space is available HERE?"
-```
-
-## Opening a new dialog
-
-A button that opens a dialog is different from a normal `setState()`
-rebuild.
-
-``` dart
-ElevatedButton(
-  onPressed: () {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Login"),
-        );
-      },
-    );
-  },
-  child: Text("Login"),
-)
-```
-
-`showDialog()` asks the Navigator to show a dialog route. The dialog
-gets its own widget subtree and corresponding elements while the
-existing UI remains underneath.
-
-Conceptually:
-
-``` text
-                 Navigator
-                 /                        /                  Main Route       Dialog Route
-            |                 |
-      Customer Card       AlertDialog
-            |                 |
-       Login Button       TextField
-                          Buttons
-```
-
-So:
-
-> **build describes widgets; `showDialog()`/Navigator introduces the new
-> route/subtree.**
-
-## The four key ideas
-
-``` text
-build()
-   |
-   +-- WHAT UI should exist?
-   |
-   +-- returns widget descriptions
-
-
-BuildContext
-   |
-   +-- WHERE am I?
-   |
-   +-- handle to an Element's location
-
-
-mounted
-   |
-   +-- AM I STILL ATTACHED?
-   |
-   +-- lifecycle status
-
-
-RenderObject
-   |
-   +-- HOW DO I DISPLAY IT?
-   |
-   +-- layout + painting
-```
 
 ## Final memory table
 
