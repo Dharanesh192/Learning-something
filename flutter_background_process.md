@@ -57,21 +57,27 @@ in the widget tree.
 
 Conceptually:
 
-``` text
-Widget Tree                 Element Tree
+``` mermaid
+---
+title : Widget tree and Element tree
+---
+flowchart TD
+    A(Body) -->B(Center)
+    B --> C(Column)
+    C --> D(Text)
+    C --> E(Button)
+    C --> F(Icon)
 
-Card                        CardElement
-  |                            |
-Column                      ColumnElement
-  |                            |
-+-- Text                    +-- TextElement
-+-- Text                    +-- TextElement
-+-- Button                  +-- ButtonElement
+    a(Body element) -->b(Center element)
+    b --> c(Column element)
+    c --> d(Text element)
+    c --> e(Button element)
+    c --> f(Icon element)
 ```
 
-Elements maintain runtime structure such as parent-child relationships,
-the current widget configuration associated with that location,
-lifecycle information, and the location represented by the Element.
+Elements maintains a `runtime structure`, `parent-child relationships`,
+current widget configuration associated with that location,
+`lifecycle information`, and the location represented by the Element.
 
 The Element Tree is maintained in memory while the app is running.
 
