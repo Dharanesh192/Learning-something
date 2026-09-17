@@ -4,6 +4,49 @@
 > executable/target-specific code, it does not compile the widget tree
 > itself.
 
+## Concepts to learn
+- **Widget Tree**
+  - What is a `Widget` ?
+  - What does a widget description contain?
+
+- **Element Tree**
+  - What is an `Element` ?
+  - Where did the Element Tree exists.
+  - How Elements remains between each rebuilds.
+
+- **RenderObject**
+  - What a `RenderObject` ?
+  - Which Elements have RenderObjects and which don't.
+
+- **Build**
+  - What `build()` actually does ?
+  - How Flutter decide to update/rebuild the existing Elements based on the new widget description.
+  - What `setState()` actually do in your UI.
+  - How `rebuilt` works and what gets a rebuild and what doesn't ?
+  - Why the Element Tree normally survives a rebuild.
+
+- **BuildContext**
+  - What is a `Context` in your UI ?
+  - How useful is context in your UI ?
+  - Why different parts of the UI have different contexts.
+  - Why each Build give you a new context.
+
+- **Layouts and Responsive UI**
+  - Layout includes `Row, Column, Expanded, etc.`
+  - What are `Constraints` and `Size` ?
+  - How available constraints change with screen size.
+  - How you can build different layout based on your screen size ?
+
+- **Navigation and Routes**
+  - What is mean by `Navigator` ?
+  - How `navigator's route` stack works \[ Navigator.push(), Navigator.pop() \]
+  - What a Route is.
+
+- **showDialog()**
+  - What showDialog() actually does.
+  - Why it uses Navigator.
+  
+
 ## Widget description
 
 A widget description is the configuration of one widget: what type it is
