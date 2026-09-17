@@ -1,8 +1,11 @@
-# Flutter Under the Hood
+# Learning how flutter work behind the code
 
-> The widget tree is created at runtime. Compilation produces
-> executable/target-specific code, it does not compile the widget tree
-> itself.
+So I recently build my first flutter application, if you want check my work [Focus-hub](https://github.com/Dharanesh192/Focus-hub). So after build that project I'm curious about how `flutter actually works`, how it convert my `code into UI` based on the platform I want, how it `navigate through other screen`, what are the `terminologies` are used in flutter
+
+So I'm going to explain this think in `3 documents`
+- I'm going to the `flutter terminologies` in this one
+- Then to learn how your `flutter code is convert into UI`. Check this file [Flutter code to UI.md](Flutter_code_to_UI.md)
+- For learning the navigation part, check this file [Navigation.md](Navigation.md)
 
 ## Concepts to learn
 - **Widget Tree**
