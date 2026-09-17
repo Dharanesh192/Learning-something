@@ -1,11 +1,15 @@
 # Learning how flutter work behind the code
 
-So I recently build my first flutter application, if you want check my work [Focus-hub](https://github.com/Dharanesh192/Focus-hub). So after build that project I'm curious about how `flutter actually works`, how it convert my `code into UI` based on the platform I want, how it `navigate through other screen`, what are the `terminologies` are used in flutter
+So, I recently built my first Flutter application. If you want to check out my work, [Focus-hub](https://github.com/Dharanesh192/Focus-hub).
 
-So I'm going to explain this think in `3 documents`
-- I'm going to the `flutter terminologies` in this one
-- Then to learn how your `flutter code is convert into UI`. Check this file [Flutter code to UI.md](Flutter_code_to_UI.md)
-- For learning the navigation part, check this file [Navigation.md](Navigation.md)
+After building that project, I became curious about how **Flutter actually works**,how it converts my **code into UI** based on the platform I’m targeting, how it **navigates between different screens**, and what **terminologies** are used in Flutter.
+
+So, I’m going to explain these things in **3 documents**:
+
+* In this one, I’m going to cover **Flutter terminologies**.
+* Then, to learn how **Flutter code is converted into UI**, check this file: [Flutter code to UI.md](Flutter_code_to_UI.md)
+* For learning about **navigation**, check this file: [Navigation.md](Navigation.md)
+
 
 ## Concepts to learn
 - **Widget Tree**
