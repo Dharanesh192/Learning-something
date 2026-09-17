@@ -49,6 +49,25 @@ This is a **runtime structure** of the widget tree, known as the **Element Tree*
 - The **child-parent relationship** between elements and their properties
 - The **lifecycle information** of each element (created, mounted, updated, disposed)
 
+``` mermaid
+---
+title : Widget tree and Element tree
+---
+flowchart TD
+    A(Body) -->B(Center)
+    B --> C(Column)
+    C --> D(Text)
+    C --> E(Button)
+    C --> F(Icon)
+
+    a(Body element) -->b(Center element)
+    b --> c(Column element)
+    c --> d(Text element)
+    c --> e(Button element)
+    c --> f(Icon element)
+```
+  
+
 ## Step 7: The Element Tree Produces the RenderObject Tree
 
 Each element that needs to be drawn on screen is linked to a **RenderObject**. Together, these form the **RenderObject Tree**.
