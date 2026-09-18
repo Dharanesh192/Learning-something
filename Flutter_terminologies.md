@@ -124,7 +124,7 @@ flowchart TD
     c --> f(Icon element)
 ```
 
-- Elements maintains a `runtime structure`, `parent-child relationships`,
+- Elements maintains a `runtime structure`, `parent-child relationships`, `Context the location details of the widget in the tree`
 current widget configuration associated with that location,
 `lifecycle information`, and the location represented by the Element.
 
