@@ -125,16 +125,84 @@ flowchart TD
     c --> f(Icon element)
 ```
 
-Elements maintains a `runtime structure`, `parent-child relationships`,
+- Elements maintains a `runtime structure`, `parent-child relationships`,
 current widget configuration associated with that location,
 `lifecycle information`, and the location represented by the Element.
 
-The Element Tree is maintained in `RAM` while the app is running.
+- The Element Tree is maintained in `RAM` while the app is running.
 
-Do not think of an Element as the object that stores final screen
+- Then the element tree is not recreated whenever your application run a build command. Instead flutter compair
+  the new `widget description` created by the `build()`with the old `existing widget description` in the element tree.
+  Based on the change it descide to `rebuild/update` the existing element tree.
+  
+- Do not think of an Element as the object that stores final screen
 coordinates. Geometry belongs to the rendering/layout system.
 
-Also, not every Element has its own RenderObject.
+## RenderObject
+
+RenderObjects handle the physical layout and painting side of Flutter.
+
+They deal with things such as:
+
+-   constraints
+-   size
+-   position
+-   layout
+-   painting
+-   Touch functionality
+
+Not every widget has it own RenderObject. The widgets like \[ `Row`, `column`, `Stack`, `Expand`, `Listview`, `Builder` \] this all are used for `arrangement or positioning other widgets` in UI. So this can't have any separate `RenderObject` for them
+
+Simplified:
+
+``` text
+Constraints are given
+     |
+     v
+Calculate size from child
+     |
+     v
+Determine layout/position
+     |
+     v
+Paint the UI
+     |
+     v
+Pixels appear in the screen 
+```
+
+Think it as:
+
+> **RenderObject = "How should this UI occupy space and be painted?"**
+
+## Constraints and Size
+
+Constraints are rules/limits supplied during layout:
+
+``` text
+minWidth
+maxWidth
+minHeight
+maxHeight
+```
+
+The child chooses a size that satisfies those constraints.
+
+``` text
+Parent
+  |
+  | constraints
+  v
+Child
+  |
+  | chooses
+  v
+Size
+```
+
+A useful simplified rule is:
+
+> **Constraints go down. Sizes come back up.**
 
 ## Build
 
@@ -273,71 +341,6 @@ State may then no longer be mounted.
 
 `mounted` does not mean "currently visible on the screen." It means the
 State is still attached to an Element.
-
-## RenderObject
-
-RenderObjects handle the physical layout and painting side of Flutter.
-
-They deal with things such as:
-
--   constraints
--   size
--   position
--   layout
--   painting
-
-Simplified:
-
-``` text
-Constraints
-     |
-     v
-Calculate size
-     |
-     v
-Determine layout/position
-     |
-     v
-Paint
-     |
-     v
-Pixels
-```
-
-Think:
-
-> **RenderObject = "How should this UI occupy space and be painted?"**
-
-Not every widget has a RenderObject.
-
-## Constraints and Size
-
-Constraints are rules/limits supplied during layout:
-
-``` text
-minWidth
-maxWidth
-minHeight
-maxHeight
-```
-
-The child chooses a size that satisfies those constraints.
-
-``` text
-Parent
-  |
-  | constraints
-  v
-Child
-  |
-  | chooses
-  v
-Size
-```
-
-A useful simplified rule is:
-
-> **Constraints go down. Sizes come back up.**
 
 ## Final memory table
 
