@@ -130,11 +130,7 @@ current widget configuration associated with that location,
 `lifecycle information`, and the location represented by the Element.
 
 - The Element Tree is maintained in `RAM` while the app is running.
-
-- Then the element tree is not recreated whenever your application run a build command. Instead flutter compair
-  the new `widget description` created by the `build()`with the old `existing widget description` in the element tree.
-  Based on the change it descide to `rebuild/update` the existing element tree.
-  
+ 
 - Do not think of an Element as the object that stores final screen
 coordinates. Geometry belongs to the rendering/layout system.
 
@@ -206,7 +202,7 @@ A useful simplified rule is:
 
 ## Build
 
-`build()` is a method that creates and returns widget descriptions.
+`build()` is a method that creates and returns new widget descriptions. This **build()** can be used `anywhere in the UI` to create or pop `new screen` in the UI and mainly used in the `main class` to create your `application UI`
 
 ``` dart
 @override
@@ -221,8 +217,13 @@ Think:
 
 > **build = "What widgets should exist here right now?"**
 
-Flutter reconciles the returned widget descriptions with the existing
+- Flutter reconciles the returned widget descriptions from the build() with the existing
 one.
+
+- So that the element tree is not recreated whenever your application run a build command. Instead flutter compair
+  the new `widget description` created by the `build()`with the old `existing widget description` in the element tree.
+  Based on the change it descide to `rebuild/update` the existing element tree.
+ 
 
 ## setState and rebuild
 
