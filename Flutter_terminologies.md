@@ -28,13 +28,12 @@ So, I’m going to explain these things in **3 documents**:
 - **Build**
   - What `build()` actually does ?
   - How Flutter decide to update/rebuild the existing Elements based on the new widget description.
+  - What is `State` in the Statefullwidget() ?
   - What `setState()` actually do in your UI.
   - How `rebuilt` works and what gets a rebuild and what doesn't ?
-  - Why the Element Tree normally survives a rebuild.
 
 - **BuildContext**
   - What is a `Context` in your UI ?
-  - How useful is context in your UI ?
   - Why different parts of the UI have different contexts.
   - Why each Build give you a new context.
 
@@ -171,34 +170,7 @@ Think it as:
 
 > **RenderObject = "How should this UI occupy space and be painted?"**
 
-## Constraints and Size
 
-Constraints are rules/limits supplied during layout:
-
-``` text
-minWidth
-maxWidth
-minHeight
-maxHeight
-```
-
-The child chooses a size that satisfies those constraints.
-
-``` text
-Parent
-  |
-  | constraints
-  v
-Child
-  |
-  | chooses
-  v
-Size
-```
-
-A useful simplified rule is:
-
-> **Constraints go down. Sizes come back up.**
 
 ## Build
 
@@ -221,11 +193,40 @@ Think:
 one.
 
 - So that the element tree is not recreated whenever your application run a build command. Instead flutter compair
-  the new `widget description` created by the `build()`with the old `existing widget description` in the element tree.
+  the new `widget description` created by the `build()`with the old `existing element tree by its type/key` of that widget in the element tree.
   Based on the change it descide to `rebuild/update` the existing element tree.
- 
 
-## setState and rebuild
+## State
+- So consider state is associated with the StatefulElements.
+- It stores mutable runtime values such as count value.
+- The State object persists through ordinary rebuilds.
+- Therefore, its values don't return to their initial values in every time build() runs.
+
+An example workflow without the state
+```text
+You initialize count = 0
+     |
+     v
+For the first build()
+     |
+     v
+It displays count = 0
+     |
+     v
+setstate() => It run count++ then state will change and mark this element as dirty
+     |
+     v
+After rebuild
+     |
+     v
+It still displays count = 0
+```
+
+because **count is a local variable inside build()**. Every time build() executes, that local **variable is created again and initialized to 0**. But **with state the count is now belongs to state object** as it provide persistent storage for mutable state so its **value will not reset during the rebuild**
+
+
+## setState() and rebuild
+Setstate are used to **update the UI during the runtime** by triggering some event from user like pressing some button in the UI
 
 ``` dart
 setState(() {
@@ -236,32 +237,32 @@ setState(() {
 Simplified flow:
 
 ``` text
-User event
-    |
-    v
+User taps button
+      ↓
 setState()
-    |
-    v
-State/associated Element marked dirty
-    |
-    v
-build() runs
-    |
-    v
-New widget descriptions
-    |
-    v
-Flutter reconciles old and new
-    |
-    +-- match -> reuse/update existing Element
-    |
-    +-- no match -> remove old Element and create new one
-    |
-    v
-Render/layout/paint work if required
-    |
-    v
-Updated pixels
+      ↓
+  count++    ← actual state is change
+      ↓
+Element marked dirty
+      ↓
+Flutter schedules rebuild
+      ↓
+build() runs  ← The count value is stored in state object
+      ↓         so it doesn't reinitialized again and again
+      ↓
+Text("$count")
+      ↓
+Text("1")   ← new Widget description
+      ↓
+Flutter compares/reconciles by it widget type/key
+      ↓
+Now flutter decide reuse / update / create / remove the elements tree
+      ↓
+existing Text Element updated
+      ↓
+RenderObject updated if necessary
+      ↓
+UI shows "1"
 ```
 
 A normal state change does not mean the whole Element Tree is destroyed
@@ -310,6 +311,34 @@ find relevant inherited/ancestor information
    v
 MediaQuery / Theme / Navigator / etc.
 ```
+## Constraints and Size
+
+Constraints are rules/limits supplied during layout:
+
+``` text
+minWidth
+maxWidth
+minHeight
+maxHeight
+```
+
+The child chooses a size that satisfies those constraints.
+
+``` text
+Parent
+  |
+  | constraints
+  v
+Child
+  |
+  | chooses
+  v
+Size
+```
+
+A useful simplified rule is:
+
+> **Constraints go down. Sizes come back up.**
 
 ## mounted
 
