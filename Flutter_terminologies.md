@@ -18,6 +18,7 @@ So, I’m going to explain these things in **3 documents**:
 
 - **Element Tree**
   - What is an `Element` ?
+  - How the `element` are created ?
   - Where did the Element Tree exists.
   - How Elements remains between each rebuilds.
 
@@ -101,27 +102,20 @@ Think:
 
 ## Element and Element Tree
 
-An **Element** is a persistent runtime object associated with a location
-in the widget tree.
+- An **Element** is a type of Buildcontext persistent runtime object associated with a location in the widget tree.
+- The element is **created by a method called createElement()**, this method will convert the **widget description into an element**.
+- In the runtime process every widget in `Statelesswidget()` or `Statefullwidget()` are pass through this method to create they respective elements.
+
 
 Conceptually:
 
 ``` mermaid
 ---
-title : Widget tree and Element tree
+title : Creation of each element
 ---
-flowchart TD
-    A(Body) -->B(Center)
-    B --> C(Column)
-    C --> D(Text)
-    C --> E(Button)
-    C --> F(Icon)
-
-    a(Body element) -->b(Center element)
-    b --> c(Column element)
-    c --> d(Text element)
-    c --> e(Button element)
-    c --> f(Icon element)
+flowchart LR
+    A("Text(It will become easy)") -->B("CreateElement()")
+    B --> C(Element: parent-child relation, Context, Configurations, Type & key of each widget)
 ```
 
 - Elements maintains a `runtime structure`, `parent-child relationships`, `Context the location details of the widget in the tree`
@@ -129,6 +123,30 @@ current widget configuration associated with that location,
 `lifecycle information`, and the location represented by the Element.
 
 - The Element Tree is maintained in `RAM` while the app is running.
+
+``` mermaid
+---
+title : Widget tree and Element tree
+---
+flowchart TD
+    A((Body)) -->B((Center))
+    B --> C((Column))
+    C --> D((Text))
+    C --> E((Button))
+    C --> F((Icon))
+
+    a((Body
+        element)) -->b((Center
+                      element))
+    b --> c((Column
+            element))
+    c --> d((Text
+            element))
+    c --> e((Button
+            element))
+    c --> f((Icon
+            element))
+```
  
 - Do not think of an Element as the object that stores final screen
 coordinates. Geometry belongs to the rendering/layout system.
@@ -270,7 +288,7 @@ and recreated.
 
 ## BuildContext
 
-`BuildContext` is a type representing a location in the Element Tree.
+`BuildContext` is the context that let as know where our widget is located in the widget Tree.
 
 ``` dart
 Widget build(BuildContext context) {
