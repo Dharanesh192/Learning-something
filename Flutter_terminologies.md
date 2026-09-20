@@ -300,7 +300,7 @@ Think:
 
 > **BuildContext = "Where am I in the Element Tree?"**
 
-Technically, an `Element` implements `BuildContext`.
+Technically, an `Element` implements from the `BuildContext`.
 
 The context does not itself contain screen size. It gives code access to
 a location from which framework APIs can find information associated
