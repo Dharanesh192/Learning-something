@@ -333,7 +333,10 @@ a
 ## Layouts
 
 Layout are the arrangement of the widget in our UI. Flutter's layout itself have widgets such as `Row, Column, Center, Expanded, etc`. Compose together to create the layout in a combined layout.
-
+- **Row** -> Row arranges children `horizontally`.
+- **Column** -> Column arranges children `vertically`.
+- **Expanded** -> It allow the child to occupy the space allocated to the flex slot
+  
 ## Constraints and Size
 
 Constraints are rules/limits supplied during layout:
