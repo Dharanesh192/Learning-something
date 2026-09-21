@@ -329,6 +329,11 @@ find relevant inherited/ancestor information
    v
 MediaQuery / Theme / Navigator / etc.
 ```
+a
+## Layouts
+
+Layout are the arrangement of the widget in our UI. Flutter's layout itself have widgets such as `Row, Column, Center, Expanded, etc`. Compose together to create the layout in a combined layout.
+
 ## Constraints and Size
 
 Constraints are rules/limits supplied during layout:
