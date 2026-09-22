@@ -288,23 +288,31 @@ and recreated.
 
 ## BuildContext
 
-`BuildContext` is the context that let as know where our widget is located in the widget Tree.
+- `BuildContext` is the context that let as know where our widget is located in the widget Tree.
+- Each widget has its own `Buildcontext`, which becomes the parent of the widget returned by the `build()`.
+
+**Let's see an example**
 
 ``` dart
-Widget build(BuildContext context) {
-  ...
+class Mywidget extends StatelessWidget{
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text("Hello to myself"), 
+    );
+  }
 }
 ```
-
-Think:
-
-> **BuildContext = "Where am I in the Element Tree?"**
-
-Technically, an `Element` implements from the `BuildContext`.
-
-The context does not itself contain screen size. It gives code access to
-a location from which framework APIs can find information associated
-with that part of the tree.
+- Technically, an `Element` implements from the `BuildContext`. Flutter's documentation explicitly says that `BuildContext objects are actually Element objects`
+- So now let's see how this code is turned into UI
+  - So first all the widget and its configuration stored in the main class's build() method
+  - When the application run the `main class` (**Mywidget**) will return its context and its `child` (**container**)
+  - Then the `container's build()` will run and return its `child` (**Text**) and `repeat this process` for all the widgets.
+    
+``` mermaid
+flowchart LR
+    A("Mywidget()" it stores the description of container) -->|It will return| B("Container()" return its context and the text widget)
+    B -->|It returns the text description| C("Text()" widget is returned)
+```
 
 Examples:
 
