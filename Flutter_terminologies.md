@@ -11,7 +11,7 @@ So, I’m going to explain these things in **3 documents**:
 * For learning about **navigation**, check this file: [Navigation.md](Navigation.md)
 
 
-## Concepts to learn
+## Concepts that you are going to learn from this documentation
 - **Widget Tree**
   - What is a `Widget` ?
   - What does a widget description contain?
@@ -321,11 +321,18 @@ flowchart LR
 - RenderObect widget
 
 ### Component widget
-- A component widget has a corresponding `ComponentElement`. That Element provides the `BuildContext`, and the `component's build()` method returns widget descriptions for its child/subtree.
+- A component widget has a corresponding `build() to return the description of the child widget`. That `ComponentElement` provides the `BuildContext`, and the `component's build()` method returns widget descriptions for its child/subtree. Example widgets are **Container, Listview and more** 
 
 ### RenderObject widget
-- A Renderobject widget `doesn't have a build method to return any widget description of its child`. Its corresponding `RenderObjectElement` uses the widget's configuration to create and update a `RenderObject`, which performs layout and painting.
+- A Renderobject widget `doesn't have a build method to return any widget description of its child`. Its corresponding `RenderObjectElement` uses the widget's configuration to create and update a `RenderObject`, which performs layout and painting. Example widgets are **Text, Icon, Image and more**
 
+``` mermaid
+---
+title: Picture like this
+---
+flowchart TD
+    a(Component widget) -->| returns a description of its child | b(Component widget) -->| returns a description of its child | c(RenderObject widget) --> |description of render object| d(Displays the UI)
+```
 
 ## Layouts
 
