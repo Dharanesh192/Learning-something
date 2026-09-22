@@ -35,6 +35,7 @@ So, I’m going to explain these things in **3 documents**:
 
 - **BuildContext**
   - What is a `Context` in your UI ?
+  - what are the `Component widget` and `RenderObject widget`
   - Why different parts of the UI have different contexts.
   - Why each Build give you a new context.
 
@@ -302,10 +303,10 @@ class Mywidget extends StatelessWidget{
   }
 }
 ```
-- Technically, an `Element` implements from the `BuildContext`. Flutter's documentation explicitly says that `BuildContext objects are actually Element objects`
+- Technically, that the `BuildContext is the interface implemented by the Element`, not a separate object sitting beside it. Flutter's documentation explicitly says that `BuildContext objects are actually Element objects`
 - So now let's see how this code is turned into UI
-  - So first all the widget and its configuration stored in the main class's build() method
-  - When the application run the `main class` (**Mywidget**) will return its context and its `child` (**container**)
+  - So first all the `widget description are returned by the main class's build()` method in one-by-one order. 
+  - When the application run the `main class` (**Mywidget**) will return its context, call the framework to create an element and returns its `child widget description` (**container**)
   - Then the `container's build()` will run and return its `child` (**Text**) and `repeat this process` for all the widgets.
     
 ``` mermaid
@@ -314,30 +315,18 @@ flowchart LR
     B -->|It returns the text description| C("Text()" widget is returned)
 ```
 
-Examples:
+> **They are two kind of widgets for this method**
 
-``` dart
-MediaQuery.sizeOf(context)
-Theme.of(context)
-Navigator.of(context)
-Scaffold.of(context)
-```
+- Component widget
+- RenderObect widget
 
-Conceptually:
+### Component widget
+- A component widget has a corresponding `ComponentElement`. That Element provides the `BuildContext`, and the `component's build()` method returns widget descriptions for its child/subtree.
 
-``` text
-context
-   |
-   v
-Element's location
-   |
-   v
-find relevant inherited/ancestor information
-   |
-   v
-MediaQuery / Theme / Navigator / etc.
-```
-a
+### RenderObject widget
+- A Renderobject widget `doesn't have a build method to return any widget description of its child`. Its corresponding `RenderObjectElement` uses the widget's configuration to create and update a `RenderObject`, which performs layout and painting.
+
+
 ## Layouts
 
 Layout are the arrangement of the widget in our UI. Flutter's layout itself have widgets such as `Row, Column, Center, Expanded, etc`. Compose together to create the layout in a combined layout.
@@ -420,3 +409,5 @@ State is still attached to an Element.
   |RenderObject        |Handles layout and painting|
   |Constraints         |Limits supplied during layout|
   |Size                |Size chosen within those limits|
+
+https://docs.flutter.dev/resources/architectural-overview
