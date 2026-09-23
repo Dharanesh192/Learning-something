@@ -88,19 +88,21 @@ MyWidget's Element is created/mounted [Element tree is created]
 Flutter calls build(context) [build() returns Container widget description]
         ↓
         ↓
-Flutter reconciles that Container widget with the child slot of MyWidget's Element
+Flutter reconciles/compare that Container widget with the child slot of MyWidget's Element
+[Check the description is already exist or not]
         ↓
         ↓
 Container's Element is created/mounted
+[For the first build it going the child slot of Mywidget's element will be empty so it will recreate the tree]
         ↓
         ↓
-Container's Element builds its subtree
+Container's Element builds its subtree [Then the build() runs and return its child description]
         ↓
         ↓
-Text widget description
+Text widget description [Now its a RenderObject widget, So after this the will be no more widget to build/return]
         ↓
         ↓
-Text's Element is created/mounted
+Text's Element is created/mounted [Create a text element]
 ```
 
 ## Step 7: The Element Tree Produces the RenderObject Tree
