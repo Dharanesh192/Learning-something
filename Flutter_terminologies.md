@@ -36,7 +36,7 @@ So, I’m going to explain these things in **3 documents**:
 - **BuildContext**
   - What is a `Context` in your UI ?
   - what are the `Component widget` and `RenderObject widget`
-  - Why different parts of the UI have different contexts.
+  - How flutter `look up for the ancestor element` in the tree ?
   - Why each Build give you a new context.
 
 - **Layouts and Responsive UI**
