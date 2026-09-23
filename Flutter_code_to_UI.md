@@ -66,7 +66,42 @@ flowchart TD
     c --> e(Button element)
     c --> f(Icon element)
 ```
-  
+> The conversion flow of element tree with an example code
+```dart
+class MyWidget extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text("Hello"),
+    );
+  }
+}
+```
+- At first `MyWidget runs its build method`, creates an `Element in element tree`, returns the `description of Container`, then Container runs then it return the context and the **container's element is added to the Element tree by updating the Element tree**.
+
+```text
+MyWidget widget [run its built()]
+        ↓
+        ↓
+MyWidget's Element is created/mounted [Element tree is created]
+        ↓
+        ↓
+Flutter calls build(context) [build() returns Container widget description]
+        ↓
+        ↓
+Flutter reconciles that Container widget with the child slot of MyWidget's Element
+        ↓
+        ↓
+Container's Element is created/mounted
+        ↓
+        ↓
+Container's Element builds its subtree
+        ↓
+        ↓
+Text widget description
+        ↓
+        ↓
+Text's Element is created/mounted
+```
 
 ## Step 7: The Element Tree Produces the RenderObject Tree
 
