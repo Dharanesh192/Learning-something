@@ -321,7 +321,7 @@ flowchart LR
 - RenderObect widget
 
 ### Component widget
-- A component widget has a corresponding `build() to return the description of the child widget`. That `ComponentElement` provides the `BuildContext`, and the `component's build()` method returns widget descriptions for its child/subtree. Example widgets are **Container, Listview and more** 
+- A component widget has a corresponding `build() to return the description of the child widget`. Component Elements keep `building/reconciling widget descriptions` of the child widget `until the framework reaches RenderObjectWidgets`. Example widgets are **Container, Listview and more** 
 
 ### RenderObject widget
 - A Renderobject widget `doesn't have a build method to return any widget description of its child`. Its corresponding `RenderObjectElement` uses the widget's configuration to create and update a `RenderObject`, which performs layout and painting. Example widgets are **Text, Icon, Image and more**
