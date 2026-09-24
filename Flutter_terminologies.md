@@ -335,9 +335,10 @@ flowchart TD
 ```
 
 ## Let's see how the different context works
-
+- ⚠️It is important to know that, the `name of the context can be anything`. ⚠️
 - So as I mention above `An Element class are the implementation of Buildcontext` Now it the time to look that
-- So `each element` is going to have its own `Buildcontext` and when we use something like this `Mywidget build(Buildcontext context)` it going to creating a context to look up in the element tree
+- So `each element` is going to have its own `Buildcontext` and when we use something like this `Mywidget build(Buildcontext context)` it going to creating a context to look up in the element tree.
+- That context is used to `find the needed element in the element tree` from that context. 
 
 > Let's learn this with an example
 
@@ -358,91 +359,60 @@ class Mywidget extends StatelessWidget{
 > So this code is going to create a button in the screen to show the bottom sheet. But this code will return an error. Let see how ?
 
 ```mermaid
-flowchart TD
+flowchart TB
 
+g([root class])
+a{{Context}}
+b([Mywidget])
+c([Scaffold])
+d([ElevatedButton])
+e([Text])
+f(["Scaffold.of(context)"])
+
+g --> a
+a --> b
+b --> c
+c --> d
+d --> e
+e --> f
+f -->|goes to the context mentioned in the code| a
+a --> |They is no scaffold|g
+%% Styling
+linkStyle 6 stroke-width:2px
+linkStyle 7 stroke-width:2px
 ```
+- So when the user press the elevated button the **flutter goes to that context that mentioned in the code and look upward to find that element in the tree**
+- In this case **the context is about the Scaffold**. So now it's go to the context and look up and they is **only root no Scaffold**
+- That's why it going to return an error about **they is no scaffold in the given context**
 
-## Layouts
+**This can be solved by creating a new context under the scaffold**
 
-Layout are the arrangement of the widget in our UI. Flutter's layout itself have widgets such as `Row, Column, Center, Expanded, etc`. Compose together to create the layout in a combined layout.
-- **Row** -> Row arranges children `horizontally`.
-- **Column** -> Column arranges children `vertically`.
-- **Expanded** -> It allow the child to occupy the space allocated to the flex slot
-  
-## Constraints and Size
+```mermaid
+flowchart TB
 
-Constraints are rules/limits supplied during layout:
+q([root class])
+w{{Context}}
+r([Mywidget])
+t([Scaffold])
+o{{Context_1}}
+y([ElevatedButton])
+u([Text])
+i(["Scaffold.of(context_1)"])
 
-``` text
-minWidth
-maxWidth
-minHeight
-maxHeight
+q --> w
+w --> r
+r --> t
+t --> o
+o --> y
+y --> u
+u --> i
+i --> |goes to the context mentioned in the code| o
+o --> |They is a scaffold|t
+%% Styling
+linkStyle 7 stroke-width:2px
+linkStyle 8 stroke-width:2px
 ```
+- In this example they are two different context namely `context` and `context_1`
+- If we use the `Sacffold.of(context_1)` in the code **flutter goes to the context_1** and looks upward for the scaffold and **it will find it**
+- If we use the `Sacffold.of(context)` in our code **flutter goes to the context** and looks upward to find the scaffold but **it will going to return an error**
 
-The child chooses a size that satisfies those constraints.
-
-``` text
-Parent
-  |
-  | constraints
-  v
-Child
-  |
-  | chooses
-  v
-Size
-```
-
-A useful simplified rule is:
-
-> **Constraints go down. Sizes come back up.**
-
-## mounted
-
-`mounted` is lifecycle information of the state in the element tree.
-
-``` dart
-if (!mounted) return;
-```
-
-Think:
-
-> **mounted = "Is this State still attached to an Element?"**
-
-This is especially important after asynchronous work:
-
-``` dart
-Future<void> loadData() async {
-  await someOperation();
-
-  if (!mounted) return;
-
-  setState(() {
-    // update UI
-  });
-}
-```
-
-The async operation can finish after the user has navigated away. The
-State may then no longer be mounted.
-
-`mounted` does not mean "currently visible on the screen." It means the
-State is still attached to an Element.
-
-## Final memory table
-
-  |Concept             | Simple meaning|
-  -------------------- |-----------------------------------------------------------|
-  |Widget description  |Configuration describing one piece of UI|
-  |Widget Tree         |Hierarchy of widget descriptions|
-  |Element             |Persistent runtime node/location associated with a widget|
-  |Element Tree        |Persistent runtime structure Flutter manages|
-  |build               |Method that creates/returns widget descriptions|
-  |BuildContext        |Handle representing an Element's location|
-  |mounted             |Whether the State is still attached to an Element|
-  |RenderObject        |Handles layout and painting|
-  |Constraints         |Limits supplied during layout|
-  |Size                |Size chosen within those limits|
-
-https://docs.flutter.dev/resources/architectural-overview
