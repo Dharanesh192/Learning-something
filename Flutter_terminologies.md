@@ -194,7 +194,8 @@ Think it as:
 
 ## Build
 
-`build()` is a method that creates and returns new widget descriptions. This **build()** can be used `anywhere in the UI` to create `the widget description and new context`
+`build()` is a method that creates and returns new widget descriptions. This **build()** can be used `anywhere in the UI` to create `the widget description`.
+build() receives a BuildContext that represents the current location in the Element tree
 ``` dart
 @override
 Widget build(BuildContext context) {
