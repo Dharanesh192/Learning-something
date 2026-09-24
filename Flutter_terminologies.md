@@ -191,7 +191,6 @@ Think it as:
 > **RenderObject = "How should this UI occupy space and be painted?"**
 
 
-
 ## Build
 
 `build()` is a method that creates and returns new widget descriptions. This **build()** can be used `anywhere in the UI` to create `the widget description`.
