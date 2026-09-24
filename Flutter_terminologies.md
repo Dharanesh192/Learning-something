@@ -103,7 +103,7 @@ Think:
 
 ## Element and Element Tree
 
-- An **Element** is a type of Buildcontext persistent runtime object associated with a location in the widget tree.
+- An **Element** class are the implementation of `Buildcontext` we will see that later.
 - The element is **created by a method called createElement()**, this method will convert the **widget description into an element**.
 - In the runtime process every widget in `Statelesswidget()` or `Statefullwidget()` are pass through this method to create they respective elements.
 
@@ -332,6 +332,34 @@ title: Picture like this
 ---
 flowchart TD
     a(Component widget) -->| returns a description of its child | b(Component widget) -->| returns a description of its child | c(RenderObject widget) --> |description of render object| d(Displays the UI)
+```
+
+## Let's see how the different context works
+
+- So as I mention above `An Element class are the implementation of Buildcontext` Now it the time to look that
+- So `each element` is going to have its own `Buildcontext` and when we use something like this `Mywidget build(Buildcontext context)` it going to creating a context to look up in the element tree
+
+> Let's learn this with an example
+
+```dart
+class Mywidget extends StatelessWidget{
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: ElevatedButton(
+          onpressed: () => Scaffold.of(context).showBottomSheet(
+            Text("It's the bottom sheet")
+        )
+        child: Text('Show the bottom sheet')
+      )
+    )
+  }
+}
+```
+> So this code is going to create a button in the screen to show the bottom sheet. But this code will return an error. Let see how ?
+
+```mermaid
+flowchart TD
+
 ```
 
 ## Layouts
