@@ -194,8 +194,7 @@ Think it as:
 
 ## Build
 
-`build()` is a method that creates and returns new widget descriptions. This **build()** can be used `anywhere in the UI` to create or pop `new screen` in the UI and mainly used in the `main class` to create your `application UI`
-
+`build()` is a method that creates and returns new widget descriptions. This **build()** can be used `anywhere in the UI` to create `the widget description and new context`
 ``` dart
 @override
 Widget build(BuildContext context) {
@@ -291,7 +290,6 @@ and recreated.
 ## BuildContext
 
 - `BuildContext` is the context that let as know where our widget is located in the widget Tree.
-- Each widget has its own `Buildcontext`, which becomes the parent of the widget returned by the `build()`.
 
 **Let's see an example**
 
@@ -307,8 +305,8 @@ class Mywidget extends StatelessWidget{
 - Technically, that the `BuildContext is the interface implemented by the Element`, not a separate object sitting beside it. Flutter's documentation explicitly says that `BuildContext objects are actually Element objects`
 - So now let's see how this code is turned into UI
   - So first all the `widget description are returned by the main class's build()` method in one-by-one order. 
-  - When the application run the `main class` (**Mywidget**) will return its context, call the framework to create an element and returns its `child widget description` (**container**)
-  - Then the `container's build()` will run and return its `child` (**Text**) and `repeat this process` for all the widgets.
+  - When the application run the `main class` (**Mywidget**) will return its context then it calls the framework to create/mount that element and returns its `child widget description` (**container**)
+  - Then the `container's build()` will run and return its `child widget description` (**Text**) and `repeat this process` for all the widgets.
     
 ``` mermaid
 flowchart LR
@@ -325,7 +323,7 @@ flowchart LR
 - A component widget has a corresponding `build() to return the description of the child widget`. Component Elements keep `building/reconciling widget descriptions` of the child widget `until the framework reaches RenderObjectWidgets`. Example widgets are **Container, Listview and more** 
 
 ### RenderObject widget
-- A Renderobject widget `doesn't have a build method to return any widget description of its child`. Its corresponding `RenderObjectElement` uses the widget's configuration to create and update a `RenderObject`, which performs layout and painting. Example widgets are **Text, Icon, Image and more**
+- A Renderobject widget `doesn't have a build method to return any widget description of its child`. The `RenderObjectWidget` as providing configuration for `RenderObjectElement`, which wraps the actual `RenderObject`. Which performs layout and painting. Example widgets are **Flex, Stack, Wrap, SizedBox, Opacity and more**
 
 ``` mermaid
 ---
