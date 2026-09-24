@@ -36,8 +36,8 @@ So, I’m going to explain these things in **3 documents**:
 - **BuildContext**
   - What is a `Context` in your UI ?
   - what are the `Component widget` and `RenderObject widget`
+  - What is the meaning of Scaffold.of(context)
   - How flutter `look up for the ancestor element` in the tree ?
-  - Why each Build give you a new context.
 
 - **Layouts and Responsive UI**
   - Layout includes `Row, Column, Expanded, etc.`
@@ -165,7 +165,8 @@ They deal with things such as:
 -   painting
 -   Touch functionality
 
-Not every widget has it own RenderObject. The widgets like \[ `Row`, `column`, `Stack`, `Expand`, `Listview`, `Builder` \] this all are used for `arrangement or positioning other widgets` in UI. So this can't have any separate `RenderObject` for them
+- Not every widget has it own RenderObject. The widgets like \[ `Row`, `column`, `Stack`, `Expand`, `Listview`, `Builder` \] this all are used for `arrangement or positioning other widgets` in UI and this are `Component widgets that can compose other widgets`. So this can't have any separate `RenderObject` to show in the screen but can be used for other things such as **layout arrangements**
+- The other elements like \[`Text`,`Icon`,`Image`,\] this are `RenderObjectWidgets correspond to RenderObjectElements that manage RenderObjects.`. It means simply this kind of element can have its `own RenderObject`
 
 Simplified:
 
@@ -334,8 +335,12 @@ flowchart TD
     a(Component widget) -->| returns a description of its child | b(Component widget) -->| returns a description of its child | c(RenderObject widget) --> |description of render object| d(Displays the UI)
 ```
 
+## Meaning of Scaffold.of(context)
+`Scaffold.of(under_context)` is that first go to context that mention in the code `under_context` and from that look upward to find the buildcontext of that element `Scaffold`.
+- It simply means go to that context (under_context) and find the element (Scaffold)
+
 ## Let's see how the different context works
-- ⚠️It is important to know that, the `name of the context can be anything`. ⚠️
+- It is important to know that, the `name of the context can be anything`.
 - So as I mention above `An Element class are the implementation of Buildcontext` Now it the time to look that
 - So `each element` is going to have its own `Buildcontext` and when we use something like this `Mywidget build(Buildcontext context)` it going to creating a context to look up in the element tree.
 - That context is used to `find the needed element in the element tree` from that context. 
