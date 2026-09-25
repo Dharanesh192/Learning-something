@@ -349,46 +349,20 @@ flowchart TD
 class Mywidget extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
+       build(BuildContext Context_1){
         body: ElevatedButton(
           onpressed: () => Scaffold.of(context).showBottomSheet(
             Text("It's the bottom sheet")
         )
         child: Text('Show the bottom sheet')
+        )
       )
-    )
+    }
   }
 }
 ```
-> So this code is going to create a button in the screen to show the bottom sheet. But this code will return an error. Let see how ?
+> So this code is going to create a button in the screen to show the bottom sheet. But this code run perfectly and also will return an error based on which context we are using. Let see how ?
 
-```mermaid
-flowchart TB
-
-g([root class])
-a{{Context}}
-b([Mywidget])
-c([Scaffold])
-d([ElevatedButton])
-e([Text])
-f(["Scaffold.of(context)"])
-
-g --> a
-a --> b
-b --> c
-c --> d
-d --> e
-e --> f
-f -->|goes to the context mentioned in the code| a
-a --> |They is no scaffold|g
-%% Styling
-linkStyle 6 stroke-width:2px
-linkStyle 7 stroke-width:2px
-```
-- So when the user press the elevated button the **flutter goes to that context that mentioned in the code and look upward to find that element in the tree**
-- In this case **the context is about the Scaffold**. So now it's go to the context and look up and they is **only root no Scaffold**
-- That's why it going to return an error about **they is no scaffold in the given context**
-
-**This can be solved by creating a new context under the scaffold**
 
 ```mermaid
 flowchart TB
@@ -415,7 +389,9 @@ o --> |They is a scaffold|t
 linkStyle 7 stroke-width:2px
 linkStyle 8 stroke-width:2px
 ```
+- So when the user press the elevated button the **flutter goes to that context that mentioned in the code and look upward to find that element in the tree**
 - In this example they are two different context namely `context` and `context_1`
-- If we use the `Sacffold.of(context_1)` in the code **flutter goes to the context_1** and looks upward for the scaffold and **it will find it**
-- If we use the `Sacffold.of(context)` in our code **flutter goes to the context** and looks upward to find the scaffold but **it will going to return an error**
-
+- If we use the `Sacffold.of(context)`.In this case **the context is about the Scaffold**. So now it's go to the context and look up and they is **only root no Scaffold**
+- That's why it going to return an error about **they is no scaffold in the given context**
+- This problem can be `solved by using the context below the scaffold`.
+-  If we use the `Sacffold.of(context_1)` in the code **flutter goes to the context_1** and looks upward for the scaffold and **it will find it**
