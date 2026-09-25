@@ -385,6 +385,8 @@ y --> u
 u --> i
 i --> |goes to the context mentioned in the code| o
 o --> |They is a scaffold|t
+i --> w
+w --> q
 %% Styling
 linkStyle 7 stroke-width:2px
 linkStyle 8 stroke-width:2px
