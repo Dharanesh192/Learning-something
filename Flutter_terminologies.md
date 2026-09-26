@@ -397,3 +397,71 @@ linkStyle 8 stroke-width:2px
 - That's why it going to return an error about **they is no scaffold in the given context**
 - This problem can be `solved by using the context below the scaffold`.
 -  If we use the `Sacffold.of(context_1)` in the code **flutter goes to the context_1** and looks upward for the scaffold and **it will find it**
+
+## Layouts
+
+Layout are the arrangement of the widget in our UI. Flutter's layout itself have widgets such as `Row, Column, Center, Expanded, etc`. Compose together to create the layout in a combined layout.
+- **Row** -> Row arranges children `horizontally`.
+- **Column** -> Column arranges children `vertically`.
+- **Expanded** -> It allow the child to occupy the space allocated to the flex slot
+  
+## Constraints and Size
+
+Constraints are rules/limits supplied during layout:
+
+``` text
+minWidth
+maxWidth
+minHeight
+maxHeight
+```
+
+The child chooses a size that satisfies those constraints.
+
+``` text
+Parent
+  |
+  | constraints
+  v
+Child
+  |
+  | chooses
+  v
+Size
+```
+
+A useful simplified rule is:
+
+> **Constraints go down. Sizes come back up.**
+
+## mounted
+
+`mounted` is lifecycle information of the state in the element tree.
+
+``` dart
+if (!mounted) return;
+```
+
+Think:
+
+> **mounted = "Is this State still attached to an Element?"**
+
+This is especially important after asynchronous work:
+
+``` dart
+Future<void> loadData() async {
+  await someOperation();
+
+  if (!mounted) return;
+
+  setState(() {
+    // update UI
+  });
+}
+```
+
+The async operation can finish after the user has navigated away. The
+State may then no longer be mounted.
+
+`mounted` does not mean "currently visible on the screen." It means the
+State is still attached to an Element.
