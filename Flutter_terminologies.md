@@ -465,3 +465,20 @@ State may then no longer be mounted.
 
 `mounted` does not mean "currently visible on the screen." It means the
 State is still attached to an Element.
+
+## Final memory table
+
+  |Concept             | Simple meaning|
+  -------------------- |-----------------------------------------------------------|
+  |Widget description  |Configuration describing one piece of UI|
+  |Widget Tree         |Hierarchy of widget descriptions|
+  |Element             |Persistent runtime node/location associated with a widget|
+  |Element Tree        |Persistent runtime structure Flutter manages|
+  |build               |Method that creates/returns widget descriptions|
+  |BuildContext        |Handle representing an Element's location|
+  |mounted             |Whether the State is still attached to an Element|
+  |RenderObject        |Handles layout and painting|
+  |Constraints         |Limits supplied during layout|
+  |Size                |Size chosen within those limits|
+
+https://docs.flutter.dev/resources/architectural-overview
